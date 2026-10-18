@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little World ❤️</title>
+<style>
+:root {
+  --bg:#0b0912;
+  --panel:#171321;
+  --purple:#a970ff;
+  --pink:#ff76b7;
+  --text:#f7f1ff;
+  --muted:#aaa1b9;
+  --border:#30253f;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:radial-gradient(ellipse at top,#24153b 0%,var(--bg) 55%);
+  color:var(--text);
+  font-family:Segoe UI,Arial,sans-serif;
+  min-height:100vh;
+}
+header {
+  text-align:center;
+  padding:28px 15px 18px;
+}
+.logo { font-size:32px; font-weight:800; letter-spacing:1px; }
+.logo span { color:var(--pink); }
+header p { color:var(--muted); margin-top:8px; }
+nav {
+  display:flex; gap:8px; justify-content:center;
+  flex-wrap:wrap; padding:0 12px 22px;
+}
+nav button,.btn {
+  border:1px solid var(--border); background:var(--panel);
+  color:var(--text); padding:11px 15px; border-radius:12px;
+  cursor:pointer; font-size:14px; transition:.2s;
+}
+nav button:hover,.btn:hover {
+  border-color:var(--purple); transform:translateY(-2px);
+}
+nav button.active,.primary {
+  background:linear-gradient(120deg,#8850e9,#c04fba);
+  border-color:transparent; color:white;
+}
+main { width:min(900px,94%); margin:auto; padding-bottom:40px; }
+.page { display:none; animation:fade .3s ease; }
+.page.active { display:block; }
+@keyframes fade {
+  from { opacity:0; transform:translateY(7px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.card {
+  background:linear-gradient(145deg,#1b1627,#13101c);
+  border:1px solid var(--border); border-radius:20px;
+  padding:22px; margin-bottom:16px;
+  box-shadow:0 10px 35px #0002;
+}
+.hero { text-align:center; padding:38px 20px; }
+.heart { font-size:54px; animation:beat 1.5s infinite; }
+@keyframes beat {
+  0%,100% { transform:scale(1); }
+  50% { transform:scale(1.1); }
+}
+h1 { font-size:29px; }
+h2 { font-size:21px; margin-top:0; }
+p { line-height:1.6; }
+.muted { color:var(--muted); font-size:14px; }
+.grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.tile {
+  cursor:pointer; border:1px solid var(--border);
+  border-radius:16px; padding:19px; background:#171321;
+}
+.tile:hover { border-color:var(--purple); }
+.tile .emoji { font-size:30px; }
+input,textarea {
+  width:100%; padding:13px; margin:7px 0 12px;
+  border:1px solid var(--border); border-radius:12px;
+  background:#0e0b16; color:white; font:inherit;
+}
+textarea { resize:vertical; min-height:75px; }
+button:focus-visible,input:focus-visible,textarea:focus-visible {
+  outline:2px solid var(--purple); outline-offset:2px;
+}
+.option {
+  display:block; width:100%; text-align:left;
+  padding:13px; margin:9px 0; border-radius:12px;
+  border:1px solid var(--border); background:#100d18;
+  color:white; cursor:pointer; font-size:15px;
+}
+.option:hover { border-color:var(--purple); }
+.option:disabled { cursor:default; opacity:.9; }
+.result { color:#d9baff; font-weight:bold; margin-top:15px; }
+#messages {
+  height:300px; overflow-y:auto; padding:12px;
+  background:#0e0b16; border-radius:14px; margin:15px 0;
+}
+.msg {
+  background:#2b2040; padding:10px 13px;
+  border-radius:14px; margin:8px 0; max-width:85%;
+  overflow-wrap:anywhere;
+}
+.msg.me { margin-left:auto; background:#623ba0; }
+.msg small { display:block; color:#d7c8ee; margin-bottom:4px; }
+.chat-row { display:flex; gap:8px; align-items:center; }
+.chat-row input { margin:0; min-width:0; }
+.chat-row button { flex-shrink:0; }
+footer { text-align:center; color:var(--muted); padding:15px; font-size:12px; }
+@media(max-width:550px) {
+  .grid { grid-template-columns:1fr; }
+  .logo { font-size:26px; }
+  .card { padding:17px; }
+  nav button { padding:10px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Our Little <span>World ♥</span></div>
+  <p>Un petit monde rien qu'à nous deux ✨</p>
+</header>
+
+<nav>
+  <button class="active" data-page="home">🏠 Accueil</button>
+  <button data-page="games">🎮 Jeux</button>
+  <button data-page="chat">💬 Chat</button>
+  <button data-page="daily">💌 Question du jour</button>
+</nav>
+
+<main>
+  <section id="home" class="page active">
+    <div class="card hero">
+      <div class="heart">💜</div>
+      <h1>Bienvenue dans notre monde</h1>
+      <p class="muted">Un endroit pour nos jeux, nos mots et nos petits moments.</p>
+      <input id="name1" placeholder="Ton prénom">
+      <input id="name2" placeholder="Le prénom de ta femme">
+      <button class="btn primary" onclick="saveNames()">Enregistrer nos prénoms ❤️</button>
+      <p id="welcome">Deux personnes, un joli monde.</p>
+    </div>
+    <div class="grid">
+      <div class="tile" onclick="showPage('games')">
+        <div class="emoji">🎮</div><h2>Nos jeux</h2>
+        <p class="muted">Questions et petits défis à deux.</p>
+      </div>
+      <div class="tile" onclick="showPage('chat')">
+        <div class="emoji">💬</div><h2>Notre chat</h2>
+        <p class="muted">Un petit espace pour échanger.</p>
+      </div>
+      <div class="tile" onclick="showPage('daily')">
+        <div class="emoji">💌</div><h2>Question du jour</h2>
+        <p class="muted">Chaque jour, une nouvelle question.</p>
+      </div>
+      <div class="tile" onclick="newChallenge()">
+        <div class="emoji">✨</div><h2>Défi surprise</h2>
+        <p class="muted">Découvre un défi au hasard.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>💖 Notre petite phrase</h2>
+      <p>Les plus beaux souvenirs commencent parfois par les choses les plus simples.</p>
+    </div>
+  </section>
+
+  <section id="games" class="page">
+    <div class="card">
+      <h1>🎮 Nos jeux</h1>
+      <p class="muted">Choisissez une activité et amusez-vous ensemble.</p>
+    </div>
+    <div class="card">
+      <h2>🧠 Qui connaît le mieux l'autre ?</h2>
+      <p id="quizQuestion">Question 1</p>
+      <div id="quizOptions"></div>
+      <p id="quizResult" class="result"></p>
+      <button class="btn primary" id="quizNext" onclick="nextQuiz()">Question suivante ➜</button>
+      <p class="muted">Vous pouvez jouer chacun votre tour et comparer vos réponses.</p>
+    </div>
+    <div class="card">
+      <h2>🎲 Défi surprise</h2>
+      <p id="challengeText">Appuie pour découvrir un défi.</p>
+      <button class="btn primary" onclick="newChallenge()">Nouveau défi ✨</button>
+    </div>
+  </section>
+
+  <section id="chat" class="page">
+    <div class="card">
+      <h1>💬 Notre petit chat</h1>
+      <p class="muted">Version de démonstration locale.</p>
+      <div id="messages" aria-live="polite"></div>
+      <label for="sender">Qui écrit ?</label>
+      <select id="sender" style="width:100%;padding:12px;background:#0e0b16;color:white;border:1px solid #30253f;border-radius:12px;margin:8px 0">
+        <option value="Moi">Moi</option>
+        <option value="Ma femme">Ma femme</option>
+      </select>
+      <div class="chat-row">
+        <input id="chatInput" placeholder="Écris ton message..." maxlength="500">
+        <button class="btn primary" onclick="sendMessage()">Envoyer</button>
+      </div>
+      <button class="btn" style="margin-top:12px" onclick="clearChat()">Effacer les messages</button>
+      <p class="muted">Les messages restent sur ce navigateur. Ils ne sont pas envoyés à l'autre personne.</p>
+    </div>
+  </section>
+
+  <section id="daily" class="page">
+    <div class="card hero">
+      <div class="heart">💌</div>
+      <h1>La question du jour</h1>
+      <p class="muted" id="today"></p>
+      <h2 id="dailyQuestion">Chargement...</h2>
+      <textarea id="dailyAnswer" placeholder="Écris ta réponse ici..."></textarea>
+      <button class="btn primary" onclick="saveDaily()">Enregistrer ma réponse ❤️</button>
+      <p id="dailyStatus" class="result"></p>
+      <button class="btn" onclick="showPreviousAnswer()">Voir ma réponse enregistrée</button>
+      <p class="muted">La réponse est enregistrée uniquement dans ce navigateur.</p>
+    </div>
+  </section>
+</main>
+
+<footer>Made with 💜 for two hearts · Our Little World</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  $(id).classList.add("active");
+  document.querySelectorAll("nav button").forEach(b =>
+    b.classList.toggle("active", b.dataset.page === id)
+  );
+}
+
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+
+function saveNames() {
+  const a = $("name1").value.trim();
+  const b = $("name2").value.trim();
+  localStorage.setItem("loveNames", JSON.stringify([a,b]));
+  updateWelcome();
+}
+
+function updateWelcome() {
+  try {
+    const names = JSON.parse(localStorage.getItem("loveNames")) || [];
+    if (names[0]) $("name1").value = names[0];
+    if (names[1]) $("name2").value = names[1];
+    $("welcome").textContent = names[0] && names[1]
+      ? names[0] + " ❤️ " + names[1] + " — votre petit monde à vous."
+      : "Deux personnes, un joli monde.";
+  } catch(e) {}
+}
+
+const quiz = [
+  {q:"Quel est le cadeau le plus précieux ?",o:["Le temps passé ensemble","Un objet cher","Un jeu vidéo","Un vêtement"]},
+  {q:"Comment préfères-tu passer une journée ensemble ?",o:["Une sortie à deux","Une soirée tranquille","Une aventure surprise","Un peu de tout"]},
+  {q:"Qu'est-ce qui aide le plus après une dispute ?",o:["Parler calmement","S'ignorer","Crier plus fort","Faire comme si rien n'était"]},
+  {q:"Quel souvenir aimerais-tu créer ?",o:["Un voyage ensemble","Une soirée spéciale","Un album photo","Tous ces souvenirs"]},
+  {q:"Quel geste montre le plus d'attention ?",o:["Écouter vraiment","Offrir quelque chose","Dire un joli mot","Faire les trois"]},
+  {q:"Quel serait votre rendez-vous idéal ?",o:["Un pique-nique","Un film à la maison","Une promenade","Une surprise"]},
+  {q:"Quelle qualité compte le plus dans un couple ?",o:["La confiance","Le respect","La communication","Toutes ces qualités"]}
+];
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function renderQuiz() {
+  const q = quiz[quizIndex];
+  $("quizQuestion").textContent = (quizIndex+1) + "/" + quiz.length + " — " + q.q;
+  $("quizOptions").innerHTML = "";
+  $("quizResult").textContent = "";
+  $("quizNext").textContent = quizIndex === quiz.length-1 ? "Recommencer ↻" : "Question suivante ➜";
+  quizAnswered = false;
+  q.o.forEach((option,i) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.textContent = option;
+    btn.onclick = () => {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      quizScore++;
+      $("quizResult").textContent = "Réponse enregistrée ! Jouez chacun votre tour pour comparer vos choix. 💜";
+      $("quizOptions").querySelectorAll("button").forEach(b => b.disabled = true);
+    };
+    $("quizOptions").appendChild(btn);
+  });
+}
+function nextQuiz() {
+  if (quizIndex >= quiz.length-1) {
+    quizIndex = 0; quizScore = 0;
+  } else {
+    quizIndex++;
+  }
+  renderQuiz();
+}
+renderQuiz();
+
+const challenges = [
+  "Dites chacun trois choses que vous appréciez chez l'autre. 💜",
+  "Choisissez une chanson qui vous rappelle un bon souvenir. 🎵",
+  "Racontez chacun votre meilleur souvenir ensemble. 📸",
+  "Imaginez une sortie idéale et planifiez-la. 🌙",
+  "Écrivez-vous un compliment sincère. 💌",
+  "Posez-vous une question que vous n'avez jamais osé poser. ✨",
+  "Inventez un surnom amusant l'un pour l'autre. 😄",
+  "Choisissez une activité à essayer ensemble cette semaine. 🎲",
+  "Racontez chacun une petite chose qui vous a fait sourire aujourd'hui. 😊"
+];
+function newChallenge() {
+  const challenge = challenges[Math.floor(Math.random()*challenges.length)];
+  $("challengeText").textContent = challenge;
+  showPage("games");
+}
+
+const dailyQuestions = [
+  "Quel est ton plus beau souvenir avec moi ?",
+  "Quelle activité aimerais-tu faire ensemble ?",
+  "Qu'est-ce qui te fait sourire quand tu penses à nous ?",
+  "Quel endroit aimerais-tu visiter avec moi ?",
+  "Quelle petite attention te rend heureux ou heureuse ?",
+  "Quelle qualité apprécies-tu le plus chez moi ?",
+  "Comment imagines-tu une journée parfaite ensemble ?",
+  "Quelle chanson te rappelle notre histoire ?",
+  "Qu'aimerais-tu apprendre avec moi ?",
+  "Quel souvenir aimerais-tu créer prochainement ?",
+  "Qu'est-ce qui te fait te sentir écouté(e) et compris(e) ?",
+  "Quelle tradition aimerais-tu créer ensemble ?",
+  "Quel rêve aimerais-tu réaliser un jour ?",
+  "Quelle est ta façon préférée de passer du temps à deux ?"
+];
+
+function getDateKey() {
+  const d = new Date();
+  return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+}
+function setupDaily() {
+  const d = new Date();
+  $("today").textContent = d.toLocaleDateString("fr-FR", {
+    weekday:"long", day:"numeric", month:"long", year:"numeric"
+  });
+  const start = new Date(d.getFullYear(),0,0);
+  const dayNumber = Math.floor((d-start)/86400000);
+  $("dailyQuestion").textContent = dailyQuestions[dayNumber%dailyQuestions.length];
+  $("dailyAnswer").value = localStorage.getItem("answer-"+getDateKey()) || "";
+}
+function saveDaily() {
+  localStorage.setItem("answer-"+getDateKey(), $("dailyAnswer").value);
+  $("dailyStatus").textContent = "Ta réponse est enregistrée sur cet appareil. ❤️";
+}
+function showPreviousAnswer() {
+  const answer = localStorage.getItem("answer-"+getDateKey());
+  $("dailyStatus").textContent = answer
+    ? "Ta réponse : " + answer
+    : "Tu n'as pas encore enregistré de réponse aujourd'hui.";
+}
+
+function loadChat() {
+  const messages = JSON.parse(localStorage.getItem("loveChat") || "[]");
+  $("messages").innerHTML = "";
+  messages.forEach(m => addMessageToScreen(m.sender,m.text));
+  $("messages").scrollTop = $("messages").scrollHeight;
+}
+function addMessageToScreen(sender,text) {
+  const div = document.createElement("div");
+  div.className = "msg" + (sender === "Moi" ? " me" : "");
+  const label = document.createElement("small");
+  label.textContent = sender;
+  const content = document.createElement("div");
+  content.textContent = text;
+  div.append(label,content);
+  $("messages").appendChild(div);
+}
+function sendMessage() {
+  const input = $("chatInput");
+  const text = input.value.trim();
+  if (!text) return;
+  const messages = JSON.parse(localStorage.getItem("loveChat") || "[]");
+  messages.push({sender:$("sender").value,text:text});
+  localStorage.setItem("loveChat",JSON.stringify(messages));
+  input.value = "";
+  loadChat();
+}
+$("chatInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") sendMessage();
+});
+function clearChat() {
+  if (confirm("Effacer tous les messages enregistrés sur ce navigateur ?")) {
+    localStorage.removeItem("loveChat");
+    loadChat();
+  }
+}
+
+updateWelcome();
+setupDaily();
+loadChat();
+</script>
+</body>
+</html>
