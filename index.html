@@ -269,7 +269,22 @@
         </div>
     </div>
 
-    
+    <!-- SCREEN 2.5: MEMORY POPUP -->
+    <div id="screen-memory" class="screen">
+        <div class="relative z-10 flex flex-col items-center max-w-md w-[90%] mx-auto text-center mt-12">
+            <div class="text-4xl mb-4 animate-float">💭🐱</div>
+            <div class="pixel-box mb-8 animate-float">
+                <h2 id="memory-title" class="text-base md:text-lg text-[#ff69b4] mb-4">Memoryy #1</h2>
+                <p id="memory-text" class="text-[10px] md:text-xs text-gray-700 mb-8 leading-loose border-t-2 border-dashed border-gray-300 pt-4">
+                    ...
+                </p>
+                <button onclick="continueAfterMemory()" id="memory-btn" class="pixel-btn px-6 py-4 text-[10px] md:text-xs w-full">
+                    Chedi li moraha 🎀
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCREEN 3: OPENING TRANSITION -->
     <div id="screen-opening" class="screen">
         <div class="relative z-10 flex flex-col items-center max-w-md w-[90%] mx-auto text-center mt-12">
@@ -374,14 +389,6 @@
         // --- DOM ELEMENTS & CONTEXTS ---
         let muteBtn;
         let drawCanvas, bgCanvas, drawCtx, bgCtx;
-
-        const memories = [
-            "39lte dak nhar fen kna dkhlna m3tlen 3nd francai wglsatnee lor bsbabk wst lfrd",
-            "39lte 3la awal mra hdrna feha 3ndk svt fach ylh bda l3am wglt lek salma s9tii",
-            "hadak nhar fen w9fu 3lenaa lbusa khlas wta fach jawbatni mk wfach dkhlteha f appel hadu trauma makaytnsawch",
-            "wahd nhar kna kharjen wtla9ena bak hda dak lmoswer wkan ay7slk",
-            "fwahd l7esa dyal lmath fl3cheya fen b9ena kandrbu dwera wn3awdu ntla9aw ngulk wach nmchiw wtgule leya li bgheti flkher dkhlna 3ndo wkant dek lmra wa9ela awal mra nglso hda b3deyatna"
-        ];
         const flowerTypes = ['🌸', '🌺', '🌻', '🌷', '🌼', '🌹'];
 
         // --- SHARED AUDIO CONTEXT ---
