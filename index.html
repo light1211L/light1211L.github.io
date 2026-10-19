@@ -234,7 +234,81 @@
                      Dkhli 👣
                  </button>
              </div>
+             <!-- Lit State -->
+             <div id="cave-lit" class="hidden animate-[float_2s_ease-in-out_infinite]">
+                 <div class="text-5xl mb-6">✨💖🐱</div>
+                 <p class="text-[#ff0000] mb-4 text-xs md:text-sm leading-loose font-bold">
+                     haka wlat 7yati fach dkhlti liha a lfonoooon
+                 </p>
+                 <p class="text-gray-600 text-[8px] md:text-[10px] mb-8 italic animate-pulse leading-relaxed">
+                     (Berki f ay blasa f l'khalfia bach tezre3i lwred 🌸)
+                 </p>
+                 <button onclick="startGameplay()" class="pixel-btn px-6 py-4 text-[10px] md:text-xs w-full">
+                     Kemli l'le3b 🎀
+                 </button>
+             </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: GAMEPLAY SCREEN -->
+    <div id="screen-playing" class="screen fixed inset-0 z-10" style="display:none; min-height: 100vh;">
+        <div class="absolute top-6 left-4 md:left-6 pixel-box !p-2 md:!p-3 flex items-center gap-2">
+            <span class="text-[10px] md:text-xs">Bows:</span>
+            <span id="score-display" class="text-[#ff0000] text-xs md:text-sm">0/5</span>
+        </div>
+
+        <div class="absolute top-20 right-4 md:right-6 text-2xl md:text-3xl animate-float pointer-events-none">
+            🐱
+        </div>
+        
+        <!-- The Target Bow -->
+        <div id="target-bow" class="absolute cursor-pointer animate-bow z-20 flex items-center justify-center" style="left: 50%; top: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px;">
+            <div class="pixel-art-bow scale-125 md:scale-150">
+                <div class="pixel-art-bow-center"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2.5: MEMORY POPUP -->
+    <div 
+        <div class="relative z-10 flex flex-col items-center max-w-md w-[90%] mx-auto text-center mt-12">
+            <div class="text-4xl mb-4 animate-float">💭🐱</div>
+            <div class="pixel-box mb-8 animate-float">
+                <h2 
+                <p 
+                </p>
+                <button onclick=
+                    Chedi li moraha 🎀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: OPENING TRANSITION -->
+    <div id="screen-opening" class="screen">
+        <div class="relative z-10 flex flex-col items-center max-w-md w-[90%] mx-auto text-center mt-12">
+            <div class="pixel-box mb-8 animate-float">
+                <h2 class="text-base md:text-lg text-[#ff0000] mb-6">bravoo 3liik! 🎉</h2>
+                <p class="text-[10px] md:text-xs text-gray-700 mb-6 leading-relaxed">
+                    Kitty fer7at bzaf! 💖<br/><br/>
+                    w jabet lik wa7ed rrisala...
+                </p>
+                
+                <button id="open-letter-btn" onclick="openLetter()" class="pixel-btn px-6 py-4 text-[10px] md:text-xs w-full transition-all">
+                    7elli rrisala ✉️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: THE SURPRISE / REWARD -->
+    <div id="screen-won" class="screen pb-12">
+        <div class="relative z-10 flex flex-col items-center max-w-2xl w-[90%] mx-auto mt-8 mb-8">
             
+            <div class="flex gap-4 mb-6 text-3xl md:text-4xl animate-float">
+                <span>✨</span><span>💖</span><span>✨</span>
+            </div>
+
             <!-- The Love Letter -->
             <div id="letter-container" class="pixel-box relative w-full transform transition-all duration-1000 animate-float">
                 
