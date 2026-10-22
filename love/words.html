@@ -365,7 +365,7 @@
         createParticles();
 
         // --- Feature 4: Typewriter Effect ---
-        const questionText = "Salma, will you be my Valentine?";
+        const questionText = "Oumaaaaymaaa, will you be my Valentine?";
         const questionEl = document.getElementById('main-question');
         let charIndex = 0;
 
@@ -465,7 +465,7 @@
         const events = [
             () => { setText("Are you sure?"); },
             () => { setText("Really sure?"); scaleNo(0.9); },
-            () => { setText("Salma please..."); moveButton(50, 0); },
+            () => { setText("Oumaaaymaa please..."); moveButton(50, 0); },
             () => { setText("Look at the other button!"); growYes(); },
             () => { 
                 noBtn.innerHTML = "Yes " + heartSvg; 
@@ -481,7 +481,7 @@
             () => { setText("Missed!"); teleportRandom(); },
             () => { setText("You're making me dizzy!"); noBtn.style.transform = `rotate(${Math.random() * 360}deg)`; },
             () => { setText("I'm fading away..."); noBtn.style.opacity = "0.5"; teleportRandom(); },
-            () => { alert("Error: 'No' is not a valid option for Salma."); },
+            () => { alert("Error: 'No' is not a valid option for Oumayma."); },
             () => { noBtn.style.opacity = "1"; noBtn.style.transform = "rotate(0deg)"; setText("Don't do this ;("); growYes(1.2); },
             () => { setText("I'm fast now!"); noBtn.onmouseover = teleportRandom; },
             () => { noBtn.onmouseover = null; noBtn.innerHTML = "YES " + heartSvg; noBtn.style.backgroundColor = "#22c55e"; setText("Resistance is futile."); },
@@ -656,7 +656,7 @@
             ctx.fillText("Official Love Contract • 2026", width/2, height - 30);
 
             const link = document.createElement('a');
-            link.download = `Valentine_Jamal_and_Salma.png`;
+            link.download = `Valentine_Salim_and_Oumaymaa.png`;
             link.href = canvas.toDataURL("image/png");
             link.click();
         }
