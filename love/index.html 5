@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salim & Oumayma 💗</title>
+
+<style>
+:root {
+  --pink: #ff75a9;
+  --dark: #59364c;
+  --bg: #fff0f6;
+  --cream: #fffaf2;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--dark);
+  font-family: "Courier New", monospace;
+  text-align: center;
+}
+header {
+  padding: 16px;
+  background: var(--cream);
+  border-bottom: 3px solid var(--dark);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+header a {
+  color: var(--dark);
+  margin: 6px;
+  font-size: 12px;
+  text-decoration: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  padding: 12px 16px;
+  border: 3px solid var(--dark);
+  background: var(--pink);
+  color: white;
+  box-shadow: 4px 4px var(--dark);
+  margin: 5px;
+  font-weight: bold;
+}
+button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px var(--dark);
+}
+section { padding: 65px 18px; }
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#ffe3ee, #e9e1ff);
+}
+h1 {
+  font-size: clamp(35px, 8vw, 70px);
+  margin: 15px;
+}
+h1 span { color: #f04487; }
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+}
+@keyframes beat {
+  50% { transform: scale(1.18); }
+}
+@keyframes float {
+  to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+.box {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 22px;
+  background: var(--cream);
+  border: 3px solid var(--dark);
+  box-shadow: 5px 5px var(--dark);
+}
+.purple { background: #eee8ff; }
+.mint { background: #e5fff4; }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1000px;
+  margin: auto;
+}
+.photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 3px solid var(--dark);
+  background: #ffe3ee;
+}
+.full-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border: 3px solid var(--dark);
+  margin-top: 25px;
+}
+.card {
+  background: white;
+  padding: 12px;
+  border: 3px solid var(--dark);
+  box-shadow: 4px 4px var(--dark);
+}
+.card p { font-size: 12px; line-height: 1.7; }
+.answers {
+  display: grid;
+  gap: 10px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+.answers button {
+  background: white;
+  color: var(--dark);
+  text-align: left;
+}
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid var(--dark);
+  font-family: inherit;
+}
+.letter {
+  white-space: pre-wrap;
+  line-height: 2;
+}
+.hidden { display: none !important; }
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark);
+  color: white;
+  padding: 12px;
+  z-index: 30;
+  max-width: 90%;
+  font-size: 12px;
+}
+.confetti {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  z-index: 20;
+  animation: float 3s linear forwards;
+}
+footer {
+  padding: 30px;
+  background: var(--dark);
+  color: white;
+  font-size: 12px;
+}
+@media(max-width:650px) {
+  .gallery { grid-template-columns: 1fr; }
+  .card { max-width: 360px; margin: auto; }
+  header a { display: inline-block; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <strong>♡ SALIM & OUMAYMA ♡</strong>
+  <p>
+    <a href="#story">OUR STORY</a>
+    <a href="#quiz">LOVE QUIZ</a>
+    <a href="#memories">MEMORIES</a>
+    <a href="#letter">LOVE LETTER</a>
+  </p>
+  <button id="music">♫ MUSIC: OFF</button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="heart">💗</div>
+  <p>A LITTLE PIXEL WORLD MADE FOR US</p>
+  <h1>Our Little<br><span>Love Story</span></h1>
+  <p>
+    Every day with you is another beautiful level
+    in our little love game.
+  </p>
+  <button onclick="go('story')">START OUR ADVENTURE ♥</button>
+  <button onclick="surprise()">SURPRISE ME ✨</button>
+</section>
+
+<section id="story">
+  <h2>Welcome to our world 🌷</h2>
+  <div class="gallery">
+    <div class="card">
+      <h3>My favorite person</h3>
+      <p>My heart chose you, and it was the best choice ever. ♡</p>
+    </div>
+    <div class="card">
+      <h3>Player 1 + Player 2 🎮</h3>
+      <p>Whatever level life takes us to, we play on the same team.</p>
+    </div>
+    <div class="card">
+      <h3>My safe place ⭐</h3>
+      <p>Your smile makes ordinary moments feel magical.</p>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="purple">
+  <h2>The Love Quiz 💌</h2>
+  <p id="question">Question 1: What's the best part of our world?</p>
+  <div class="answers" id="answers"></div>
+  <p id="feedback" aria-live="polite"></p>
+  <button id="next" class="hidden">NEXT QUESTION →</button>
+  <button id="restart" class="hidden">PLAY AGAIN ↻</button>
+</section>
+
+<section id="memories">
+  <h2>Salim + Oumayma 📸</h2>
+  <p>Our little pixel memories, made with love.</p>
+
+  <div class="gallery">
+    <div class="card">
+      <img class="photo" src="images/sunset-memory.png"
+           alt="Salim and Oumayma at sunset">
+      <h3>Our story began 🌅</h3>
+      <p>The sunset feels brighter with you.</p>
+    </div>
+
+    <div class="card">
+      <img class="photo" src="images/cuddle-memory.png"
+           alt="Salim cuddling blonde-haired Oumayma">
+      <h3>My safe place 💗</h3>
+      <p>Every moment with you feels special.</p>
+    </div>
+
+    <div class="card">
+      <img class="photo" src="images/seaside-memory.png"
+           alt="Salim and Oumayma holding hands by the sea">
+      <h3>Always together 🌙</h3>
+      <p>Same sky, same dreams, hand in hand.</p>
+    </div>
+  </div>
+
+  <img class="full-image"
+       src="images/our-love-story.png"
+       alt="Pixel-art love story of Salim and Oumayma">
+
+  <p>One little world, two hearts, one love. ♡</p>
+  <button onclick="memory()">UNLOCK A MEMORY 💖</button>
+</section>
+
+<section id="letter" class="mint">
+  <h2>A Little Love Letter 💌</h2>
+  <div class="box">
+    <label for="name">HER NAME</label>
+    <input id="name" value="Oumayma" maxlength="50">
+
+    <label for="message">YOUR MESSAGE</label>
+    <textarea id="message" rows="5">Oumayma, thank you for making my days brighter. You are my favorite person, my happiness, and a beautiful part of my life. Whatever happens, I hope we keep making lovely memories together. I love you. ♡</textarea>
+
+    <button onclick="openLetter()">OPEN MY HEART ♡</button>
+    <button onclick="copyLetter()">COPY LETTER</button>
+
+    <div id="letterOutput" class="box letter hidden"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Love meter: ∞ / 100 💖</h2>
+  <div class="box">
+    <p>Achievement unlocked: MY FAVORITE HUMAN</p>
+    <p>Reward: unlimited hugs and beautiful memories.</p>
+    <button onclick="hug()">SEND A PIXEL HUG 🤗</button>
+    <button onclick="sparkle(40)">MAKE IT SPARKLE ✨</button>
+  </div>
+</section>
+</main>
+
+<footer>
+  MADE WITH ♡ FOR SALIM & OUMAYMA<br>
+  ALWAYS TOGETHER 🌙
+</footer>
+
+<div id="toast" class="hidden" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let toastTimer;
+
+function toast(text) {
+  $('toast').textContent = text;
+  $('toast').classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    $('toast').classList.add('hidden');
+  }, 2500);
+}
+
+function go(id) {
+  $(id).scrollIntoView({ behavior: 'smooth' });
+  sparkle(12);
+}
+
+function sparkle(count = 20) {
+  const icons = ['💗','♡','✨','🌸','⭐'];
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'confetti';
+    el.textContent = icons[Math.floor(Math.random()*icons.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.fontSize = (16 + Math.random()*18) + 'px';
+    el.style.animationDuration = (2 + Math.random()*2) + 's';
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+
+function surprise() {
+  const messages = [
+    'You are my favorite notification. 💌',
+    'Achievement unlocked: a thousand kisses! 💋',
+    'You and me, always on the same team. 🎮',
+    'My favorite place is wherever you are. 💗'
+  ];
+  toast(messages[Math.floor(Math.random()*messages.length)]);
+  sparkle(20);
+}
+
+function memory() {
+  toast('Memory unlocked: our next beautiful moment is waiting. ♡');
+  sparkle(20);
+}
+
+function hug() {
+  toast('Sending the biggest pixel hug to Oumayma! 🤗💗');
+  sparkle(30);
+}
+
+const questions = [
+  {
+    q: 'Question 1: What makes our world special?',
+    a: ['Laughing together 😂','Supporting each other 🤝','Both! 💗'],
+    correct: 2
+  },
+  {
+    q: 'Question 2: What is the perfect date?',
+    a: ['A fancy adventure 🌆','A cozy movie 🍿','Being together 💕'],
+    correct: 2
+  },
+  {
+    q: 'Question 3: What should we collect?',
+    a: ['Coins 🪙','Happy memories 📸','Matching socks 🧦'],
+    correct: 1
+  },
+  {
+    q: 'Question 4: What do we do when life gets hard?',
+    a: ['Give up','Support each other 🤝','Blame the game 🎮'],
+    correct: 1
+  },
+  {
+    q: 'Question 5: What is our secret code?',
+    a: ['LOVE','TEAMWORK','Both! 💖'],
+    correct: 2
+  }
+];
+
+let qIndex = 0;
+let score = 0;
+let answered = false;
+
+function renderQuestion() {
+  answered = false;
+  $('question').textContent = questions[qIndex].q;
+  $('feedback').textContent = '';
+  $('next').classList.add('hidden');
+  $('restart').classList.add('hidden');
+  $('answers').replaceChildren();
+
+  questions[qIndex].a.forEach((answer, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = answer;
+
+    btn.onclick = () => {
+      if (answered) return;
+      answered = true;
+
+      if (i === questions[qIndex].correct) score++;
+
+      $('feedback').textContent =
+        i === questions[qIndex].correct
+        ? 'Correct! Love points unlocked. 💗'
+        : 'Cute answer! You still win with love. ♡';
+
+      [...$('answers').children].forEach((b, j) => {
+        b.disabled = true;
+        if (j === questions[qIndex].correct) {
+          b.style.background = '#d8ffed';
+        }
+      });
+
+      $('next').classList.remove('hidden');
+      $('next').textContent =
+        qIndex === questions.length - 1
+        ? 'SEE MY RESULT 🏆'
+        : 'NEXT QUESTION →';
+    };
+
+    $('answers').appendChild(btn);
+  });
+}
+
+$('next').onclick = () => {
+  if (!answered) return;
+  qIndex++;
+
+  if (qIndex >= questions.length) {
+    $('question').textContent = 'YOU UNLOCKED BIG LOVE! 🏆';
+    $('answers').replaceChildren();
+    $('feedback').textContent =
+      `Your score: ${score}/${questions.length}. ` +
+      'The biggest prize is sharing this adventure together. 💗';
+    $('next').classList.add('hidden');
+    $('restart').classList.remove('hidden');
+    sparkle(25);
+  } else {
+    renderQuestion();
+  }
+};
+
+$('restart').onclick = () => {
+  qIndex = 0;
+  score = 0;
+  renderQuestion();
+};
+
+function openLetter() {
+  const name = $('name').value.trim() || 'My favorite person';
+  const message = $('message').value.trim();
+
+  $('letterOutput').textContent =
+    `To ${name},\n\n${message}\n\nAlways with love,\nSalim ♡`;
+
+  $('letterOutput').classList.remove('hidden');
+  sparkle(12);
+}
+
+async function copyLetter() {
+  const name = $('name').value.trim() || 'My favorite person';
+  const text =
+    `To ${name},\n\n${$('message').value}\n\nAlways with love,\nSalim ♡`;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    toast('Love letter copied! 💌');
+  } catch {
+    openLetter();
+    toast('The letter is visible above; select it and copy.');
+  }
+}
+
+let audio = null;
+let musicTimer = null;
+let musicOn = false;
+let note = 0;
+const melody = [523,659,784,659,587,698,880,698];
+
+function playNote() {
+  if (!audio || !musicOn) return;
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+
+  osc.type = 'square';
+  osc.frequency.value = melody[note++ % melody.length];
+  gain.gain.value = 0.025;
+
+  osc.connect(gain);
+  gain.connect(audio.destination);
+  osc.start();
+  osc.stop(audio.currentTime + 0.16);
+}
+
+$('music').onclick = async () => {
+  if (musicOn) {
+    musicOn = false;
+    clearInterval(musicTimer);
+    if (audio) await audio.suspend();
+    $('music').textContent = '♫ MUSIC: OFF';
+    return;
+  }
+
+  try {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) throw new Error();
+    if (!audio) audio = new Audio();
+    await audio.resume();
+
+    musicOn = true;
+    playNote();
+    musicTimer = setInterval(playNote, 230);
+    $('music').textContent = '♫ MUSIC: ON';
+  } catch {
+    toast('Music is not supported in this browser.');
+  }
+};
+
+renderQuestion();
+</script>
+</body>
+</html>
